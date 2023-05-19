@@ -1,1 +1,78 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" 
+                 class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+    
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member.age}}</p>
+                </div>
+    
+                <div>
+                    <strong>Active:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+    
+                <div>
+                    <strong>Member since:</strong>
+                    <p>{{member.created}}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                         <button class="btn btn-primary">Like</button>
+                         <button class="btn btn-success">Messages</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="col-8">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" role="tab">About {{member.knownAs}}</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" id="interests-tab" data-bs-toggle="tab" data-bs-target="#interests">Interests</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos">Photos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages">Messages</a>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="about" role="tabpanel">
+                    <h4>Description</h4>
+                    <p>{{member.introduction}}</p>
+                    <h4>Looking for</h4>
+                    <p>{{member.lookingFor}}</p>
+                </div>
+
+                <div class="tab-pane fade" id="interests" role="tabpanel">
+                  <h4>Interests</h4>
+                  <p>{{member.interests}}</p>
+                </div>
+
+                <div class="tab-pane fade" id="photos" role="tabpanel">
+                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+                </div>
+
+                <div class="tab-pane fade" id="messages" role="tabpanel">
+                    <p>messages will go here</p>
+                </div>
+
+          </div>
+
+    </div>
+    
+</div> 
