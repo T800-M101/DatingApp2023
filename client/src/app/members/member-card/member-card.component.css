@@ -35,7 +35,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.btn-memo {
+.btn-card {
 width: 50px;
 border: 1px solid #2fa4e7; /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
