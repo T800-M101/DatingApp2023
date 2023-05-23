@@ -20,8 +20,7 @@ export class AccountService {
         map((response: User) => {
            const user = response;
            if (user) {
-             localStorage.setItem('user', JSON.stringify(user));
-             this.currentUserSource.next(user); // when logged in the service emits the state of  user to all components subscribed 
+             this.setCurrentUser(user); // when logged in the service emits the state of  user to all components subscribed 
            }
         })
       )
@@ -31,8 +30,8 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
+          
         }
       })
     )
@@ -40,6 +39,7 @@ export class AccountService {
 
   // when reloads a component gets from localStorage the user token and emits the state of it
   setCurrentUser(user: User): void {
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
 

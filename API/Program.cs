@@ -18,7 +18,12 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200")); // x or builder is the CORS Policy Builder
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
+     .SetIsOriginAllowedToAllowWildcardSubdomains()
+     .AllowAnyHeader()
+     .AllowCredentials()
+     .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+     .SetPreflightMaxAge(TimeSpan.FromSeconds(3600))); // x or builder is the CORS Policy Builder
 
 app.UseAuthentication();
 
